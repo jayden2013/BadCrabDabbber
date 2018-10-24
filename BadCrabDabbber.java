@@ -26,9 +26,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import java.awt.datatransfer.*;
+
 /**
- * BadCrabDabber for Slack.
- * AKA the worst program I've ever written.
+ * BadCrabDabber for Slack. AKA the worst program I've ever written.
+ * 
  * @author Jayden Weaver
  *
  */
@@ -41,19 +42,18 @@ public class BadCrabDabbber {
 	static double emoteMouseX = 0, emoteMouseY = 0;
 	static double usernameMouseX = 0, usernameMouseY = 0;
 	static double userPhotoMouseX = 0, userPhotoMouseY = 0;
-	//Array for holding emotes
+	// Array for holding emotes
 	static String[] emoteArray;
-	static int sleepTime = 300; //Default Sleep Time
+	static int sleepTime = 500; // Default Sleep Time
 	static boolean doListen = false;
 
-	public static void main(String args[]) throws AWTException{
+	public static void main(String args[]) throws AWTException {
 
-		//Try to set the look and feel for the current OS.
+		// Try to set the look and feel for the current OS.
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		}
-		catch(Exception e){
-			//do nothing
+		} catch (Exception e) {
+			// do nothing
 		}
 
 		JFrame frame = new JFrame("BadCrabDabber " + VERSION);
@@ -65,19 +65,18 @@ public class BadCrabDabbber {
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		JButton sendEmotes = new JButton("Send Custom Emotes");
-		JTextArea emotesTextArea = new JTextArea(10,50);
+		JTextArea emotesTextArea = new JTextArea(10, 50);
 		BufferedImage logoImage = null;
-		try{
+		try {
 			logoImage = ImageIO.read(new File("img/logo.png"));
 
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			System.out.println("cannot find images.");
 		}
 
-		//Button for setting emotes
+		// Button for setting emotes
 		JButton setEmotes = new JButton("Set Emotes");
-		setEmotes.addActionListener(new ActionListener(){
+		setEmotes.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String temp = emotesTextArea.getText();
@@ -86,37 +85,24 @@ public class BadCrabDabbber {
 			}
 		});
 
-		//Button for calibrating
+		// Button for calibrating
 		JButton calibrateButton = new JButton("Calibrate");
-		calibrateButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		calibrateButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				try {
-					System.out.println("Place cursor on \"Add reaction\". You have five seconds.");
+					System.out.println("Place cursor in Slack window. You have five seconds.");
 					TimeUnit.SECONDS.sleep(5);
 					System.out.println("done");
 					mouseX = MouseInfo.getPointerInfo().getLocation().getX();
 					mouseY = MouseInfo.getPointerInfo().getLocation().getY();
 					System.out.println(mouseX);
 					System.out.println(mouseY);
-					System.out.println("Place an emote, then place cursor on \"Add reaction\". You have five seconds.");
-					TimeUnit.SECONDS.sleep(5);
-					emoteMouseX = MouseInfo.getPointerInfo().getLocation().getX();
-					emoteMouseY = MouseInfo.getPointerInfo().getLocation().getY();
-					System.out.println(emoteMouseX);
-					System.out.println(emoteMouseY);
-					System.out.println("Place cursor in front of username. You have five seconds.");
-					TimeUnit.SECONDS.sleep(5);
-					usernameMouseX = MouseInfo.getPointerInfo().getLocation().getX();
-					usernameMouseY = MouseInfo.getPointerInfo().getLocation().getY();
-					System.out.println(usernameMouseX);
-					System.out.println(usernameMouseY);
 					System.out.println("Place cursor on user photo. You have five seconds.");
 					TimeUnit.SECONDS.sleep(5);
 					userPhotoMouseX = MouseInfo.getPointerInfo().getLocation().getX();
 					userPhotoMouseY = MouseInfo.getPointerInfo().getLocation().getY();
 					System.out.println(userPhotoMouseX);
 					System.out.println(userPhotoMouseY);
-
 				} catch (InterruptedException e1) {
 					e1.printStackTrace();
 				}
@@ -127,9 +113,9 @@ public class BadCrabDabbber {
 		Image dabIcon = Toolkit.getDefaultToolkit().getImage("img/dab.png");
 		dabButton.setIcon(new ImageIcon(dabIcon));
 		dabButton.setFocusable(false);
-		dabButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				emoteArray = (":d:\n:a:\n:b:".split("\n"));
+		dabButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				emoteArray = ("+:d:\n+:a:\n+:b:".split("\n"));
 				sendEmotes.doClick();
 			}
 		});
@@ -138,9 +124,9 @@ public class BadCrabDabbber {
 		Image crabIcon = Toolkit.getDefaultToolkit().getImage("img/crab.png");
 		crabButton.setIcon(new ImageIcon(crabIcon));
 		crabButton.setFocusable(false);
-		crabButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				emoteArray = (":copyright:\n:registered:\n:ab:".split("\n"));
+		crabButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				emoteArray = ("+:copyright:\n+:registered:\n+:ab:".split("\n"));
 				sendEmotes.doClick();
 			}
 		});
@@ -149,9 +135,9 @@ public class BadCrabDabbber {
 		Image badIcon = Toolkit.getDefaultToolkit().getImage("img/bad.png");
 		badButton.setIcon(new ImageIcon(badIcon));
 		badButton.setFocusable(false);
-		badButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				emoteArray = (":b:\n:a:\n:d:".split("\n"));
+		badButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				emoteArray = ("+:b:\n+:a:\n+:d:".split("\n"));
 				sendEmotes.doClick();
 			}
 		});
@@ -160,29 +146,29 @@ public class BadCrabDabbber {
 		Image madIcon = Toolkit.getDefaultToolkit().getImage("img/mad.png");
 		madButton.setIcon(new ImageIcon(madIcon));
 		madButton.setFocusable(false);
-		madButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				emoteArray = (":m:\n:a:\n:d:".split("\n"));
+		madButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				emoteArray = ("+:m:\n+:a:\n+:d:".split("\n"));
 				sendEmotes.doClick();
 			}
 		});
 
-		//Button and code for listening for new messages.
+		// Button and code for listening for new messages.
 		JButton listenButton = new JButton("listen");
-		listenButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		listenButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				doListen = !doListen;
 				try {
 					Robot robot = new Robot();
 					Color color = robot.getPixelColor((int) userPhotoMouseX, (int) userPhotoMouseY);
 					System.out.println("Listening. Press Enter in the console to stop.");
-					while(System.in.available() == 0){
-						if (!robot.getPixelColor((int) userPhotoMouseX, (int) userPhotoMouseY).equals(color)){
-							//Can fetch username here and decide whether to emote.
+					while (System.in.available() == 0) {
+						if (!robot.getPixelColor((int) userPhotoMouseX, (int) userPhotoMouseY).equals(color)) {
+							// Can fetch username here and decide whether to
+							// emote.
 							sendEmotes.doClick();
 							break;
 						}
-
 					}
 					System.out.println("You have stopped listening.");
 				} catch (IOException | AWTException e1) {
@@ -193,50 +179,28 @@ public class BadCrabDabbber {
 		});
 		panel1.add(listenButton);
 
-		sendEmotes.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
+		sendEmotes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
 				try {
-					//beep boop
+					// beep boop
 					Robot robot = new Robot();
 					double originalMousePositionX = MouseInfo.getPointerInfo().getLocation().getX();
 					double originalMousePositionY = MouseInfo.getPointerInfo().getLocation().getY();
 					Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 					StringSelection stringSelection;
-
-					//Temporary Emote
 					robot.mouseMove((int) mouseX, (int) mouseY);
-					//Click mouse
 					robot.mousePress(InputEvent.BUTTON1_MASK);
 					robot.mouseRelease(InputEvent.BUTTON1_MASK);
-					stringSelection = new StringSelection(":snowman:");
-					clipboard.setContents(stringSelection, stringSelection);
-					//CTRL+V
-					robot.keyPress(KeyEvent.VK_CONTROL);
-					robot.keyPress(KeyEvent.VK_V);
-					robot.keyRelease(KeyEvent.VK_V);
-					robot.keyRelease(KeyEvent.VK_CONTROL);
-					//Press Enter
-					robot.keyPress(KeyEvent.VK_ENTER);
-					robot.keyRelease(KeyEvent.VK_ENTER);
-					System.out.println(":snowman:");
-					TimeUnit.MILLISECONDS.sleep(sleepTime);
-
-					for (String s : emoteArray){
-						//Move Mouse to Emote Button
-						robot.mouseMove((int) emoteMouseX, (int) emoteMouseY);
-						//Click mouse
-						robot.mousePress(InputEvent.BUTTON1_MASK);
-						robot.mouseRelease(InputEvent.BUTTON1_MASK);
+					for (String s : emoteArray) {
 						stringSelection = new StringSelection(s);
 						clipboard.setContents(stringSelection, stringSelection);
-
-						//CTRL+V
+						// CTRL+V
 						robot.keyPress(KeyEvent.VK_CONTROL);
 						robot.keyPress(KeyEvent.VK_V);
 						robot.keyRelease(KeyEvent.VK_V);
 						robot.keyRelease(KeyEvent.VK_CONTROL);
-						//Press Enter
+						// Press Enter
 						robot.keyPress(KeyEvent.VK_ENTER);
 						robot.keyRelease(KeyEvent.VK_ENTER);
 						System.out.println(s);
@@ -244,31 +208,10 @@ public class BadCrabDabbber {
 						TimeUnit.MILLISECONDS.sleep(sleepTime);
 
 					}
-
-					//Remove Temporary Emote
-					//Move Mouse to Emote Button
-					robot.mouseMove((int) emoteMouseX, (int) emoteMouseY);
-					//Click mouse
-					robot.mousePress(InputEvent.BUTTON1_MASK);
-					robot.mouseRelease(InputEvent.BUTTON1_MASK);
-					stringSelection = new StringSelection(":snowman:");
-					clipboard.setContents(stringSelection, stringSelection);
-					//CTRL+V
-					robot.keyPress(KeyEvent.VK_CONTROL);
-					robot.keyPress(KeyEvent.VK_V);
-					robot.keyRelease(KeyEvent.VK_V);
-					robot.keyRelease(KeyEvent.VK_CONTROL);
-					//Press Enter
-					robot.keyPress(KeyEvent.VK_ENTER);
-					robot.keyRelease(KeyEvent.VK_ENTER);
-					System.out.println(":snowman:");
-					TimeUnit.MILLISECONDS.sleep(sleepTime);
-
-					//Return mouse to original position
+					// Return mouse to original position
 					robot.mouseMove((int) originalMousePositionX, (int) originalMousePositionY);
 
-				}
-				catch(Exception ex){
+				} catch (Exception ex) {
 
 				}
 			}
@@ -279,15 +222,16 @@ public class BadCrabDabbber {
 		delayField.setText("" + sleepTime);
 
 		JButton delayButton = new JButton("Set Delay");
-		delayButton.addActionListener(new ActionListener(){
+		delayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sleepTime = Integer.parseInt(delayField.getText());
 			}
 		});
 
 		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.setPreferredSize(new Dimension(700,700));
-		tabbedPane.setFocusable(false); //gets rid of ugly dotted line when a tab is selected
+		tabbedPane.setPreferredSize(new Dimension(700, 700));
+		tabbedPane.setFocusable(false); // gets rid of ugly dotted line when a
+										// tab is selected
 
 		JLabel picLabel = new JLabel(new ImageIcon(logoImage));
 		panel1.setLayout(new FlowLayout());
@@ -296,7 +240,7 @@ public class BadCrabDabbber {
 		panel1.add(dabButton);
 		panel1.add(madButton);
 
-		panel1.add(sendEmotes);		
+		panel1.add(sendEmotes);
 		tabbedPane.add("Send Emotes", panel1);
 
 		panel2.add(emotesTextArea);
@@ -307,7 +251,8 @@ public class BadCrabDabbber {
 		tabbedPane.add("Settings", panel2);
 
 		JPanel panel3 = new JPanel();
-		panel3.add(new JLabel("<html>i can't come into work today i have bad crabs <br/> you must manually specify emotes to use the listener</html>"));
+		panel3.add(new JLabel(
+				"<html>i can't come into work today i have bad crabs <br/> you must manually specify emotes to use the listener</html>"));
 		tabbedPane.add("About", panel3);
 
 		frame.setLayout(new FlowLayout());
@@ -319,15 +264,16 @@ public class BadCrabDabbber {
 
 	/**
 	 * Returns the author of the most recent slack message.
+	 * 
 	 * @return
 	 */
-	public static String getUsername(){
+	public static String getUsername() {
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
 		String username = "Failed to get username";
 		try {
 			Robot robot = new Robot();
-			//Check Username
+			// Check Username
 			robot.mouseMove((int) usernameMouseX, (int) usernameMouseY);
 			robot.mousePress(InputEvent.BUTTON1_MASK);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
@@ -351,11 +297,11 @@ public class BadCrabDabbber {
 			int i = 0;
 			System.out.println("begin loop");
 			System.out.println(usernameArray.length);
-			while(i < usernameArray.length - 1){
+			while (i < usernameArray.length - 1) {
 				username = usernameArray[usernameArray.length - i - 1];
-				if (username.length() > 2){
+				if (username.length() > 2) {
 					System.out.println(username.substring(username.length() - 1, username.length()));
-					if (username.substring(username.length() - 1, username.length()).equals("]")){
+					if (username.substring(username.length() - 1, username.length()).equals("]")) {
 						break;
 					}
 				}
